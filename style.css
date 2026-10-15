@@ -1,0 +1,779 @@
+/* ==========================================================
+   1. RESET, VARIABEL, DAN SETUP DASAR
+   ========================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-header: 'Playfair Display', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+
+  /* Palet Warna Professional Fresh E-Commerce */
+  --color-primary: #18181B;         /* Deep Charcoal */
+  --color-secondary: #27272A;       /* Dark Zinc */
+  --color-accent-fresh: #4E7A63;    /* Sage Green */
+  --color-accent-hover: #3E624E;    /* Dark Sage */
+  --color-accent-soft: #E8F0EC;     /* Mint Soft Background */
+  --color-bg-light: #FAFAFA;        /* Off-White Clean */
+  --color-white: #FFFFFF;
+  --color-muted: #64748B;           /* Refined Slate Muted Text */
+  --color-border: #E2E8F0;          /* Subtle Soft Border */
+  --color-sale: #D97706;            /* Amber Accent */
+  
+  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-subtle: 0 4px 20px -2px rgba(24, 24, 27, 0.05);
+  --shadow-hover: 0 12px 30px -5px rgba(24, 24, 27, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-light);
+  color: var(--color-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-smooth);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================
+   2. HALAMAN AUTENTIKASI (LOGIN)
+   ========================================================== */
+.auth-page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F4F7F5;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.auth-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  animation: floatGlow 12s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+  width: 350px;
+  height: 350px;
+  background: #A8D5BA;
+  top: 10%;
+  left: 15%;
+}
+
+.blob-2 {
+  width: 400px;
+  height: 400px;
+  background: #CBE3DB;
+  bottom: 10%;
+  right: 15%;
+  animation-delay: -6s;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(50px, 40px) scale(1.15); }
+}
+
+.auth-card {
+  position: relative;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  width: 100%;
+  max-width: 440px;
+  padding: 44px 38px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+.auth-brand {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-subtitle {
+  font-size: 0.825rem;
+  color: var(--color-muted);
+  margin-top: 6px;
+}
+
+.auth-tabs {
+  display: flex;
+  background-color: rgba(244, 244, 245, 0.8);
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 28px;
+  border: 1px solid var(--color-border);
+}
+
+.auth-tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 10px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: var(--transition-smooth);
+}
+
+.auth-tab-btn.active {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.auth-form {
+  display: none;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth-form.active {
+  display: flex;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+.form-group input {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background-color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.form-group input:focus {
+  border-color: var(--color-accent-fresh);
+  background-color: var(--color-white);
+  box-shadow: 0 0 0 4px var(--color-accent-soft);
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.825rem;
+  color: var(--color-muted);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.forgot-link {
+  color: var(--color-accent-fresh);
+  font-weight: 600;
+}
+
+.full-width {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+/* ==========================================================
+   3. NAVBAR & ANNOUNCEMENT BAR
+   ========================================================== */
+.navbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--color-white);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+}
+
+.announcement-bar {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  font-weight: 500;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--color-primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-accent-fresh);
+}
+
+.brand-logo {
+  font-family: var(--font-header);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.brand-logo span {
+  color: var(--color-accent-fresh);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-bg-light);
+  border: 1px solid var(--color-border);
+  padding: 8px 14px;
+  border-radius: 30px;
+  gap: 10px;
+}
+
+.search-box input {
+  border: none;
+  background: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  width: 140px;
+}
+
+.nav-icon {
+  position: relative;
+  font-size: 1.25rem;
+  color: var(--color-secondary);
+}
+
+.badge-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: var(--color-accent-fresh);
+  color: var(--color-white);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.btn-logout {
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-logout:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* ==========================================================
+   4. HERO SECTION
+   ========================================================== */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  padding: 60px 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 50px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.badge-fresh {
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent-fresh);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.775rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.hero-content h1 {
+  font-family: var(--font-header);
+  font-size: 3.2rem;
+  line-height: 1.15;
+  color: var(--color-primary);
+}
+
+.hero-content p {
+  font-size: 1.025rem;
+  color: var(--color-muted);
+  max-width: 500px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 12px 26px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-fresh);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  padding: 12px 26px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid var(--color-border);
+  transition: var(--transition-smooth);
+}
+
+.hero-image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.hero-img-card {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+}
+
+.hero-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================
+   5. FEATURES BAR
+   ========================================================== */
+.features-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1300px;
+  margin: 40px auto;
+  padding: 0 5%;
+}
+
+.feature-item {
+  background-color: var(--color-white);
+  padding: 22px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--color-border);
+}
+
+.feature-item i {
+  font-size: 1.5rem;
+  color: var(--color-accent-fresh);
+  background-color: var(--color-accent-soft);
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.feature-item h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.feature-item p {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+/* ==========================================================
+   6. KATALOG PRODUK (PERBAIKAN RAPI TERPERCAYA)
+   ========================================================== */
+.categories-section, .shop-section {
+  max-width: 1300px;
+  margin: 80px auto;
+  padding: 0 5%;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-header h2 {
+  font-family: var(--font-header);
+  font-size: 2.2rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.category-card {
+  position: relative;
+  height: 360px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.category-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(24,24,27,0.85), transparent);
+  color: var(--color-white);
+}
+
+.filter-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.tab-btn {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.product-card {
+  background-color: var(--color-white);
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-accent-fresh);
+}
+
+/* Memaksa Semua Gambar Produk Memiliki Rasio 4:5 yang Sama */
+.product-image-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-color: #F8FAFC;
+  overflow: hidden;
+}
+
+.product-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image-box img {
+  transform: scale(1.05);
+}
+
+/* Label Badge di Atas Gambar */
+.product-image-box .badge-fresh,
+.product-image-box .badge-sale {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.product-image-box .badge-fresh {
+  background-color: var(--color-accent-fresh);
+  color: var(--color-white);
+}
+
+.product-image-box .badge-sale {
+  background-color: var(--color-sale);
+  color: var(--color-white);
+}
+
+.wishlist-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  background-color: var(--color-white);
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  color: var(--color-primary);
+}
+
+/* Informasi Produk dengan Layout Teratur */
+.product-info {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  background-color: var(--color-white);
+}
+
+.product-category {
+  font-size: 0.725rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.product-title {
+  font-family: var(--font-header);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+
+.product-price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.current-price {
+  font-weight: 700;
+  font-size: 0.975rem;
+  color: var(--color-primary);
+}
+
+.old-price {
+  font-size: 0.825rem;
+  color: var(--color-muted);
+  text-decoration: line-through;
+}
+
+/* ==========================================================
+   7. ABOUT & FOOTER
+   ========================================================== */
+.about-section {
+  background-color: var(--color-white);
+  padding: 80px 5%;
+  border-top: 1px solid var(--color-border);
+}
+
+.about-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.about-text h2 {
+  font-family: var(--font-header);
+  font-size: 2.2rem;
+  margin: 12px 0;
+}
+
+.about-text p {
+  color: var(--color-muted);
+  font-size: 0.975rem;
+}
+
+.about-img-box img {
+  border-radius: 14px;
+}
+
+.footer {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 60px 5% 30px 5%;
+}
+
+.footer-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-col p {
+  color: #94A3B8;
+  font-size: 0.875rem;
+}
+
+.footer-col h4 {
+  font-family: var(--font-header);
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  color: #94A3B8;
+  font-size: 0.875rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  color: #64748B;
+  font-size: 0.825rem;
+  margin-top: 24px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+  .hero-section, .about-container {
+    grid-template-columns: 1fr;
+  }
+  .features-bar, .category-grid, .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .features-bar, .category-grid, .product-grid, .footer-container {
+    grid-template-columns: 1fr;
+  }
+}

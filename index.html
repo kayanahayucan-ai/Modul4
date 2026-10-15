@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA Fashion — Official Web Store</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ================= HALAMAN LOGIN / AUTHENTICATION ================= -->
+    <section id="authPage" class="auth-page-wrapper">
+        <div class="auth-bg-blob blob-1"></div>
+        <div class="auth-bg-blob blob-2"></div>
+
+        <div class="auth-card">
+            <div class="auth-brand">
+                <a href="#" class="brand-logo">AURA<span>.</span></a>
+                <p class="auth-subtitle">Sistem Informasi E-Commerce & Portal Anggota</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" onclick="switchAuthTab('login')">Masuk</button>
+                <button class="auth-tab-btn" onclick="switchAuthTab('register')">Daftar Akun</button>
+            </div>
+
+            <!-- Form Login -->
+            <form id="loginForm" class="auth-form active" onsubmit="handleAuthLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Alamat Email / Username</label>
+                    <input type="email" id="loginEmail" placeholder="nama@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Kata Sandi</label>
+                    <input type="password" id="loginPassword" placeholder="Masukkan kata sandi" required>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox"> Ingat Saya
+                    </label>
+                    <a href="#" class="forgot-link">Lupa Kata Sandi?</a>
+                </div>
+                <button type="submit" class="btn-primary full-width">Masuk ke Dashboard</button>
+                <button type="button" class="btn-secondary full-width" onclick="bypassToDashboard()" style="margin-top: 10px;">Lanjutkan Sebagai Tamu</button>
+            </form>
+
+            <!-- Form Register -->
+            <form id="registerForm" class="auth-form" onsubmit="handleAuthRegister(event)">
+                <div class="form-group">
+                    <label for="regName">Nama Lengkap</label>
+                    <input type="text" id="regName" placeholder="Masukkan nama lengkap" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Alamat Email</label>
+                    <input type="email" id="regEmail" placeholder="nama@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Kata Sandi Baru</label>
+                    <input type="password" id="regPassword" placeholder="Minimal 8 karakter" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Buat Akun Baru</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ================= DASHBOARD / MAIN WEBSITE ================= -->
+    <div id="mainDashboard" class="main-dashboard-wrapper" style="display: none;">
+        
+        <!-- NAVBAR -->
+        <header class="navbar-wrapper">
+            <div class="announcement-bar">
+                <p>Diskon Spesial Musim Ini: Gunakan kode <strong>FRESHMY26</strong> untuk potongan 20 persen | Pengiriman Gratis Seluruh Indonesia</p>
+            </div>
+            <nav class="navbar">
+                <div class="nav-left">
+                    <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#home" class="active">Beranda</a></li>
+                        <li><a href="#shop">Koleksi</a></li>
+                        <li><a href="#categories">Kategori</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                    </ul>
+                </div>
+                <div class="nav-center">
+                    <a href="#" class="brand-logo">AURA<span>.</span></a>
+                </div>
+                <div class="nav-right">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Cari produk...">
+                    </div>
+                    <a href="#cart" class="nav-icon" title="Keranjang"><i class="fa-solid fa-bag-shopping"></i><span class="badge-count">2</span></a>
+                    <button class="btn-logout" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <span class="badge-fresh">Koleksi Terbaru 2026</span>
+                <h1>Minimalist Chic dan Everyday Fresh</h1>
+                <p>Temukan gaya harian yang memadukan kenyamanan urban modern dengan sentuhan warna segar yang elegan.</p>
+                <div class="hero-buttons">
+                    <a href="#shop" class="btn-primary">Belanja Sekarang <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#categories" class="btn-secondary">Lihat Katalog</a>
+                </div>
+            </div>
+            <div class="hero-image-grid">
+                <div class="hero-img-card img-1">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Model Fashion 1">
+                </div>
+                <div class="hero-img-card img-2">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80" alt="Model Fashion 2">
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES BAR -->
+        <section class="features-bar">
+            <div class="feature-item">
+                <i class="fa-solid fa-truck-fast"></i>
+                <div>
+                    <h4>Pengiriman Cepat</h4>
+                    <p>Terkirim aman ke seluruh wilayah</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div>
+                    <h4>Garansi Original 100%</h4>
+                    <p>Kualitas butik standar internasional</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-rotate-left"></i>
+                <div>
+                    <h4>Mudah Retur 30 Hari</h4>
+                    <p>Tanpa ribet dan jaminan tukar ukuran</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-headset"></i>
+                <div>
+                    <h4>Layanan Pelanggan 24/7</h4>
+                    <p>Selalu siap membantu gaya Anda</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- KATEGORI UTAMA -->
+        <section id="categories" class="categories-section">
+            <div class="section-header">
+                <h2>Jelajahi Berdasarkan Gaya</h2>
+                <p>Pilih kategori yang paling mencerminkan kepribadian Anda hari ini.</p>
+            </div>
+            <div class="category-grid">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=500&q=80" alt="Casual Wear">
+                    <div class="category-overlay">
+                        <h3>Casual Urban</h3>
+                        <span>120 Produk</span>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=500&q=80" alt="Office Chic">
+                    <div class="category-overlay">
+                        <h3>Office Chic</h3>
+                        <span>85 Produk</span>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=500&q=80" alt="Active & Loungewear">
+                    <div class="category-overlay">
+                        <h3>Loungewear</h3>
+                        <span>64 Produk</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUK KATALOG -->
+        <section id="shop" class="shop-section">
+            <div class="section-header">
+                <h2>Koleksi Unggulan</h2>
+                <p>Desain minimalis dengan material katun premium bernapas.</p>
+            </div>
+            
+            <div class="filter-tabs">
+                <button class="tab-btn active">Semua Produk</button>
+                <button class="tab-btn">Paling Laris</button>
+                <button class="tab-btn">Atasan Wanita</button>
+                <button class="tab-btn">Outerwear</button>
+            </div>
+
+            <div class="product-grid">
+                <!-- Produk 1 -->
+                <div class="product-card">
+                    <div class="product-image-box">
+                        <span class="badge-fresh">Baru</span>
+                        <img src="https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=500&q=80" alt="Produk 1">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <span class="product-category">Sage Green Series</span>
+                            <h3 class="product-title">AURA Linen Oversized Shirt</h3>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Rp 289.000</span>
+                            <span class="old-price">Rp 350.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produk 2 -->
+                <div class="product-card">
+                    <div class="product-image-box">
+                        <span class="badge-sale">Diskon 25%</span>
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" alt="Produk 2">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <span class="product-category">Minimalist Outer</span>
+                            <h3 class="product-title">Tokyo Urban Trench Coat</h3>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Rp 599.000</span>
+                            <span class="old-price">Rp 799.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produk 3 -->
+                <div class="product-card">
+                    <div class="product-image-box">
+                        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=500&q=80" alt="Produk 3">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <span class="product-category">Essential Knitwear</span>
+                            <h3 class="product-title">Soft Modal Turtleneck Top</h3>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Rp 199.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produk 4 -->
+                <div class="product-card">
+                    <div class="product-image-box">
+                        <span class="badge-fresh">Terlaris</span>
+                        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=500&q=80" alt="Produk 4">
+                        <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <span class="product-category">Bottoms</span>
+                            <h3 class="product-title">High-Waist Pleated Culottes</h3>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Rp 329.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-text">
+                    <span class="badge-fresh">Filosofi Kami</span>
+                    <h2>Estetika Fungsional untuk Generasi Dinamis</h2>
+                    <p>Kami percaya bahwa pakaian terbaik adalah pakaian yang tidak hanya terlihat indah di foto, namun juga sangat nyaman dipakai beraktivitas seharian penuh.</p>
+                </div>
+                <div class="about-img-box">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" alt="Suasana Toko AURA">
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <a href="#" class="brand-logo footer-logo">AURA<span>.</span></a>
+                    <p>Destinasi belanja fashion pilihan utama dengan konsep minimalis segar dan profesional.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Menu Navigasi</h4>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#shop">Koleksi</a></li>
+                        <li><a href="#categories">Kategori Produk</a></li>
+                        <li><a href="#about">Tentang AURA</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Bantuan dan Layanan</h4>
+                    <ul>
+                        <li><a href="#">Status Pesanan</a></li>
+                        <li><a href="#">Kebijakan Pengembalian</a></li>
+                        <li><a href="#">Panduan Ukuran</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AURA Fashion Indonesia. Dibuat untuk Tugas TP Modul 4 Webpro.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- SCRIPT INTERAKSI LAYANAN AUTENTIKASI -->
+    <script>
+        function switchAuthTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const tabs = document.querySelectorAll('.auth-tab-btn');
+
+            tabs.forEach(t => t.classList.remove('active'));
+
+            if (tab === 'login') {
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+                tabs[0].classList.add('active');
+            } else {
+                registerForm.classList.add('active');
+                loginForm.classList.remove('active');
+                tabs[1].classList.add('active');
+            }
+        }
+
+        function handleAuthLogin(event) {
+            event.preventDefault();
+            alert('Login berhasil! Mengalihkan ke Dashboard...');
+            showDashboard();
+        }
+
+        function handleAuthRegister(event) {
+            event.preventDefault();
+            alert('Pendaftaran akun berhasil! Silakan masuk.');
+            switchAuthTab('login');
+        }
+
+        function bypassToDashboard() {
+            showDashboard();
+        }
+
+        function showDashboard() {
+            document.getElementById('authPage').style.display = 'none';
+            document.getElementById('mainDashboard').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function handleLogout() {
+            if (confirm('Apakah Anda yakin ingin keluar?')) {
+                document.getElementById('mainDashboard').style.display = 'none';
+                document.getElementById('authPage').style.display = 'flex';
+                window.scrollTo(0, 0);
+            }
+        }
+    </script>
+</body>
+</html>
